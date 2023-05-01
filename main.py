@@ -1,5 +1,6 @@
 import sys
 import os
+import random
 
 if os.name == "nt":
     sil = "cls"
@@ -21,25 +22,45 @@ fiat = ["Fiat"]
 print("Fiat için sayı giriniz: ")
 for i in range(1, 5, 1):
   x = int(input())
-  fiat.insert(i, x)
+  if x >= 0:
+    fiat.insert(i, x)
+  else:
+    os.system(sil)
+    print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+    sys.exit()
 
 opel = ["Opel"]
 print("Opel için sayı giriniz: ")
 for i in range(1, 5, 1):
   x = int(input())
-  opel.insert(i, x)
+  if x >= 0:
+    opel.insert(i, x)
+  else:
+    os.system(sil)
+    print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+    sys.exit()
 
 mercedes = ["Mercedes"]
 print("Mercedes için sayı giriniz: ")
 for i in range(1, 5, 1):
   x = int(input())
-  mercedes.insert(i, x)
+  if x >= 0:
+    mercedes.insert(i, x)
+  else:
+    os.system(sil)
+    print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+    sys.exit()
 
 nissan = ["Nissan"]
 print("Nissan için sayı giriniz: ")
 for i in range(1, 5, 1):
   x = int(input())
-  nissan.insert(i, x)
+  if x >= 0:
+    nissan.insert(i, x)
+  else:
+    os.system(sil)
+    print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+    sys.exit()
   
 matrix = [
   ["Marka", "Ocak", "Şubat", "Mart", "Nisan"],
@@ -61,13 +82,22 @@ while int(sayac) == 0:
   print("2-Her aydaki tüm markaların satış toplamlarını görmek için 2,")
   print("3-Bütün markaların toplam satış miktarını görmek için 3,")
   print("4-Her markanın en çok satışını gerçekleştirildiği ayı görmek için 4,")
-  print("5-Tüm marka ve tüm aylar için otomobil satışları toplamını görmek için 5,")
-  print("6-Her markanın en az satışını gerçekleştirildiği ayı görmek için 6,")
-  print("7-En az satışı yapan markaya gitmek için 7,")
-  print("8-Her aydaki en yüksek satışı yapan markaları görmek için 8,")
-  print("9-Her aydaki en az satışı yapan markaları görmek için 9 yazınız.")
+  print("5-Her markanın en az satışını gerçekleştirildiği ayı görmek için 5,")
+  print("6-En az satışı yapan markaya gitmek için 6,")
+  print("7-Her aydaki en yüksek satışı yapan markaları görmek için 7,")
+  print("8-Her aydaki en az satışı yapan markaları görmek için 8,")
+  print("9-Listedeki herhangi bir sorunun cevabına gitmek için 9,")
+  print("10-Listedeki satış fiyatlarını değiştirmek istiyorsanız 10,")
+  print("11-Programı sonlandırmak isterseniz 11,")
+  print("12-Yapımcı hakkında bilgi almak isterseniz 12 yazınız.")
   print("\n")
-  secim = int(input("Sayı Giriniz: "))
+  b = int(input("Sayı Giriniz: "))
+  if int(b) == 9:
+    os.system(sil)
+    rastgele = random.randint(1,8)
+    secim = int(rastgele)
+  else:
+    secim = int(b)
   if int(secim) == 1:
     os.system(sil)
     x = []
@@ -132,17 +162,10 @@ while int(sayac) == 0:
                 print(marka, "markasının en çok satışı", ay, "ayında gerçekleşmiştir.\nSatış miktarı:", maxsatis)
   elif int(secim) == 5:
     os.system(sil)
-    toplam = 0
-    for i in range(1, 5):
-        for j in range(1, 5):
-            toplam += int(matrix[i][j])
-    print("Tüm marka ve tüm aylar için otomobil satışları toplamı:", toplam)
-  elif int(secim) == 6:
-    os.system(sil)
     for i in range(1, 5):
         satismiktarlari = matrix[i][1:5]
         minsatis = min(satismiktarlari)
-        if minsatis != 0:
+        if minsatis > -1:
             if satismiktarlari.count(minsatis) > 1:
                 marka = matrix[i][0]
                 print(marka, "markasının en az satışı aşağıdaki aylarda gerçekleşmiştir:")
@@ -154,7 +177,7 @@ while int(sayac) == 0:
                 ay_index = matrix[i].index(minsatis)
                 ay = matrix[0][ay_index]
                 print(marka, "markasının en az satışı", ay, "ayında gerçekleşmiştir.\nSatış miktarı:", minsatis)
-  elif int(secim) == 7:
+  elif int(secim) == 6:
     os.system(sil)
     x = []
     for i in range(1,5,1):
@@ -182,12 +205,12 @@ while int(sayac) == 0:
                     marka = matrix[i][0]
                     ay = matrix[0][j]
                     print("Marka:", marka, "- Ay:", ay)
-  elif int(secim) == 8:
+  elif int(secim) == 7:
     os.system(sil)
     for ay_index in range(1, 5):
       satislar = [matrix[i][ay_index] for i in range(1, 5)]
       maxsatis = max(satislar)
-      if maxsatis != 0:
+      if maxsatis > -1:
         markalar = [matrix[i][0] for i in range(1, 5) if matrix[i][ay_index] == maxsatis]
         ay = matrix[0][ay_index]
         print(ay, "ayında en yüksek satışı yapan markalar:")
@@ -197,25 +220,75 @@ while int(sayac) == 0:
         else:
             marka = markalar[0]
             print(marka, "- Satış miktarı:", maxsatis)
-  elif int(secim) == 9:
+  elif int(secim) == 8:
     os.system(sil)
     for ay_index in range(1, 5):
       satislar = [matrix[i][ay_index] for i in range(1, 5)]
       minsatis = min(satislar)
-      if minsatis != 0:
+      if minsatis > -1:
         markalar = [matrix[i][0] for i in range(1, 5) if matrix[i][ay_index] == minsatis]
         ay = matrix[0][ay_index]
-        print(ay, "ayında en düşük satışı yapan markalar:")
+        print(ay, "ayında en az satışı yapan markalar:")
         if satislar.count(minsatis) > 1:
             for marka in markalar:
                 print(marka, "- Satış miktarı:", minsatis)
         else:
             marka = markalar[0]
             print(marka, "- Satış miktarı:", minsatis)
+  elif int(secim) == 10:
+    os.system(sil)
+    print("Fiat için sayı giriniz: ")
+    for i in range(1, 5, 1):
+      x = int(input())
+      if x >= 0:
+        fiat.insert(i, x)
+      else:
+        os.system(sil)
+        print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+        sys.exit()
+    print("Opel için sayı giriniz: ")
+    for i in range(1, 5, 1):
+      x = int(input())
+      if x >= 0:
+        opel.insert(i, x)
+      else:
+        os.system(sil)
+        print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+        sys.exit()
+    print("Mercedes için sayı giriniz: ")
+    for i in range(1, 5, 1):
+      x = int(input())
+      if x >= 0:
+        mercedes.insert(i, x)
+      else:
+        os.system(sil)
+        print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+        sys.exit()
+    print("Nissan için sayı giriniz: ")
+    for i in range(1, 5, 1):
+      x = int(input())
+      if x >= 0:
+        nissan.insert(i, x)
+      else:
+        os.system(sil)
+        print("Bir satışın 0'dan küçük olma ihtimali var mı?\nProgram ile dalga geçmeye çalıştığınız için Program Sonlandırıldı.")
+        sys.exit()
+  elif int(secim) == 11:
+    os.system(sil)
+    cevap = input("Programı sonlandırmak istiyor musunuz? (E/H): ")
+    if cevap.lower() == "e" or cevap.lower() == "evet":
+      sys.exit()
+    elif cevap.lower() == "h" or cevap.lower() == "hayır":
+      os.system(sil)
+    else:
+      print("Geçersiz cevap, lütfen 'e', 'evet' veya 'h'', hayır' yazınız.")
+  elif int(secim) == 12:
+    os.system(sil)
+    print("Merhaba ben Carbonibon.\nSosyal medya adreslerimden beni takip edebilirsiniz.")
   else:
     os.system(sil)
     print("Lütfen listeden bir sayı seçip yazınız.")
-  b = input("\nGeri dönmek için 0, programı sonlandırmak için herhangi bir tuşa basın: ")
+  b = input("\nListeye geri dönmek için 0, programı sonlandırmak için herhangi bir tuşa basın: ")
   if int(b) != 0:
     os.system(sil)
     print("Program Sonlandırıldı.")
