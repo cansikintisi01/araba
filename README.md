@@ -1,1 +1,2 @@
-# araba satış listesi üzerinde hesaplama 
+# Araba Satışı 
+Bu gördüğünüz python dilinde yazılmış bir kod amacı 
