@@ -1,4 +1,4 @@
-# Araba Satışı 
+# Araba Satış Listesi Üzerinde Hesaplama 
 
 Bu kod, kullanıcıdan 4 araba markasının her birinin 4 aylık satış rakamını girmesini istiyor ve girilen rakamlara göre bir liste oluşturuyor. Kullanıcı daha sonra bu listeye erişmek için farklı seçenekler sunulan bir menü alıyor. Menü seçenekleri şunları içeriyor: 
 
